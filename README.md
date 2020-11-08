@@ -5,7 +5,7 @@ It uses [Ant Design](https://ant.design/) components to expedite design build.
 
 ## Getting Started
 
-First, run the development server:
+First, go to cd redhat-users, then run the development server:
 
 ```bash
 npm run dev
@@ -18,6 +18,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Live Demo
 
 You can see the live working version here: [https://react-for-redhat.vercel.app/](https://react-for-redhat.vercel.app/)
+
+## Testing
+
+For testing, first go to cd redhat-users, then type `npm run cypress:open`.  You will see the users test there, which you can run.
 
 ## Notes / Next Steps
 

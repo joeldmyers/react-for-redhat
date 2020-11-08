@@ -18,3 +18,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Live Demo
 
 You can see the live working version here: [https://react-for-redhat.vercel.app/](https://react-for-redhat.vercel.app/)
+
+## Notes / Next Steps
+
+1. I was a bit confused as to the layout for the address, etc.; it looked a bit messy in the Word doc I saw, so that is something I would want to follow up on.
+
+2. For next steps, I would probably work on setting up custom hooks to get user data.  I would also work on storing this data in state (possibly using Redux) to avoid having to do API calls all the time. 

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { List, Avatar } from "antd";
+import Layout from "../components/layout";
 
 const Users = () => {
   const [data, setData] = useState([]);
@@ -28,23 +29,25 @@ const Users = () => {
   }, []);
 
   return (
-    <List
-      itemLayout="horizontal"
-      dataSource={data}
-      renderItem={(item) => {
-        return (
-          <List.Item>
-            <List.Item.Meta
-              avatar={
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              }
-              title={<a href="https://ant.design">{item.name}</a>}
-              description={`Username: ${item.username}, Email: ${item.email}, Address: ${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}`}
-            />
-          </List.Item>
-        );
-      }}
-    />
+    <Layout>
+      <List
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item) => {
+          return (
+            <List.Item>
+              <List.Item.Meta
+                avatar={
+                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                }
+                title={<a href="https://ant.design">{item.name}</a>}
+                description={`Username: ${item.username}, Email: ${item.email}, Address: ${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}`}
+              />
+            </List.Item>
+          );
+        }}
+      />
+    </Layout>
   );
 };
 

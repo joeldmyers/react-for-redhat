@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 const Details = () => {
   const [user, setUser] = useState({});
-  const apiEndpoint = "http://jsonplaceholder.typicode.com/users";
+  const apiEndpoint = "https://jsonplaceholder.typicode.com/users";
   const router = useRouter();
   const { uid } = router.query;
 

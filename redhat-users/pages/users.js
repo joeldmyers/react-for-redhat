@@ -4,7 +4,7 @@ import Layout from "../components/layout";
 
 const Users = () => {
   const [data, setData] = useState([]);
-  const apiEndpoint = "http://jsonplaceholder.typicode.com/users";
+  const apiEndpoint = "https://jsonplaceholder.typicode.com/users";
 
   const sortDataByNameDescending = (data) => {
     return data.sort(function (a, b) {
@@ -23,7 +23,6 @@ const Users = () => {
       .then((response) => response.json())
       .then((data) => {
         const sortedData = sortDataByNameDescending(data);
-        console.log(sortedData);
         setData(sortedData);
       });
   }, []);

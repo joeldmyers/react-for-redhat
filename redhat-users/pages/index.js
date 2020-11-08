@@ -24,7 +24,6 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         const sortedData = sortDataByNameDescending(data);
-        console.log(sortedData);
         setData(sortedData);
       });
   }, []);

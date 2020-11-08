@@ -1,65 +1,58 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState, useEffect } from "react";
+import { List, Avatar } from "antd";
+import Layout from "../components/layout";
+import Link from "next/link";
 
-export default function Home() {
+const Home = () => {
+  const [data, setData] = useState([]);
+  const apiEndpoint = "http://jsonplaceholder.typicode.com/users";
+
+  const sortDataByNameDescending = (data) => {
+    return data.sort(function (a, b) {
+      if (a.name > b.name) {
+        return -1;
+      }
+      if (a.name < b.name) {
+        return 1;
+      }
+      return 0;
+    });
+  };
+
+  useEffect(() => {
+    fetch(apiEndpoint)
+      .then((response) => response.json())
+      .then((data) => {
+        const sortedData = sortDataByNameDescending(data);
+        console.log(sortedData);
+        setData(sortedData);
+      });
+  }, []);
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout>
+      <List
+        itemLayout="horizontal"
+        dataSource={data}
+        renderItem={(item) => {
+          return (
+            <List.Item>
+              <List.Item.Meta
+                avatar={
+                  <Link href={`/users/${item.id}`}>
+                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                  </Link>
+                }
+                title={<Link href={`/users/${item.id}`}>{item.name}</Link>}
+                description={`Username: ${item.username}, Email: ${item.email}, Address: ${item.address.street}, ${item.address.suite}, ${item.address.city}, ${item.address.zipcode}`}
+              />
+              <Link href={`/users/${item.id}`}>See Details</Link>
+            </List.Item>
+          );
+        }}
+      />
+    </Layout>
+  );
+};
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
-}
+export default Home;

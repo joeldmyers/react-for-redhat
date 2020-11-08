@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const apiEndpoint = "http://jsonplaceholder.typicode.com/users";
+  const apiEndpoint = "https://jsonplaceholder.typicode.com/users";
 
   const sortDataByNameDescending = (data) => {
     return data.sort(function (a, b) {
